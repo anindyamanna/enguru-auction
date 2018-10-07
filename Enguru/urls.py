@@ -19,6 +19,7 @@ from rest_framework.documentation import include_docs_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('auction/', include('auction.urls', namespace='auction')),
-    path('docs/', include_docs_urls(title='Enguru - Auction'))
+    path('docs/', include_docs_urls(title='Enguru - Auction API Docs', public=False))
 ]
