@@ -1,2 +1,2 @@
 web: gunicorn Enguru.wsgi
-worker: celery worker --app=Enguru
+worker: celery -A Enguru worker -l info
