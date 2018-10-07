@@ -24,6 +24,7 @@ class AuctionItem(models.Model):
     starting_amount = models.DecimalField(max_digits=20, decimal_places=2, default=0)
     winner = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True, blank=True)
     running = models.BooleanField(default=False)
+    once_auctioned = models.BooleanField(default=False)
 
     def __str__(self):
         return self.item_name
