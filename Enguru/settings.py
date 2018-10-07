@@ -119,6 +119,16 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# DRF settings
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    )
+}
+
 # Try to import local settings
 
 try:
