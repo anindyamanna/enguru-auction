@@ -8,7 +8,12 @@ class CustomUser(AbstractUser):
     """
     full_name = models.CharField(max_length=256, null=True, blank=True, verbose_name="Full Name")
 
-    USERNAME_FIELD = 'email'  # Using email as username as no username field was provided in the problem
+    def save(self, *args, **kwargs):
+        """
+        Overriding save method to set username automatically from email.
+        """
+        self.username = self.email
+        super(CustomUser, self).save(*args, **kwargs)
 
 
 class AuctionItem(models.Model):
