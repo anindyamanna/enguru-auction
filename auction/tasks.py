@@ -1,8 +1,4 @@
-from datetime import timedelta
-
 from celery import shared_task
-from django.core.mail import send_mail
-from django.utils import timezone
 
 from auction.models import AuctionItem
 
@@ -24,6 +20,7 @@ def end_auction(auction_item_id):
     sold_to = auction_item.bid_set.order_by('-amount')[0].user if auction_item.bid_set.exists() else None
     if sold_to:
         auction_item.winner = sold_to
+        # This will be an async call.
         # send_mail(
         #     'Congratulations! You Won.',
         #     'You won {0} for amount {1}'.format(auction_item.item_name,
